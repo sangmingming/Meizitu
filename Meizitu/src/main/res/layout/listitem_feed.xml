@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:padding="8dip"
+    android:layout_height="match_parent"
+    android:background="@drawable/listitem_feed_selector"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="6dip"
+        android:text="哈哈"/>
+
+    <ImageView
+        android:id="@+id/iv_normal"
+        android:layout_width="match_parent"
+        android:layout_height="280dip"
+        android:background="#c9c9c9"
+        android:layout_marginBottom="4dip"
+        android:scaleType="centerCrop"/>
+
+</LinearLayout>

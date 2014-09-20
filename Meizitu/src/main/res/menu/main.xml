@@ -1,0 +1,21 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:meizitu="http://schemas.android.com/apk/res-auto"
+
+    >
+    <item
+        android:id="@+id/action_refresh"
+        android:title="@string/action_refresh"
+        android:icon="@drawable/ic_refresh"
+        meizitu:showAsAction="always"/>
+    <item
+        android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        android:orderInCategory="100"
+        meizitu:showAsAction="never"/>
+    <item
+        android:id="@+id/action_feedback"
+        android:title="@string/action_feedback"
+        android:orderInCategory="101"
+        meizitu:showAsAction="never"/>
+
+</menu>

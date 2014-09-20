@@ -1,0 +1,30 @@
+<resources>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!--<item name="windowActionBarOverlay">true</item>-->
+        <!--<item name="android:windowBackground">@drawable/main_bg</item>-->
+        <!--<item name="app:actionBarStyle">@style/ActionbarStyle</item>-->
+        <!--<item name="app:actionOverflowButtonStyle">@style/ActionbarOverFlowStyle</item>-->
+    </style>
+
+    <!--<style name="ActionbarStyle" parent="Theme.Widget.Holo.ActionBar">-->
+        <!--<item name="android:background">@color/main_bg</item>-->
+        <!--<item name="app:titleTextStyle">@style/ActionbarTitleTextStyle</item>-->
+    <!--</style>-->
+
+    <!--<style name="ActionbarTitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">-->
+        <!--<item name="android:textColor">@android:color/white</item>-->
+    <!--</style>-->
+
+    <!--<style name="ActionbarOverFlowStyle" parent="@android:style/Widget.Holo.ActionButton.Overflow">-->
+        <!--<item name="android:src">@drawable/ic_action_overflow</item>-->
+    <!--</style>-->
+    <style name="Transparent">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+    </style>
+
+</resources>

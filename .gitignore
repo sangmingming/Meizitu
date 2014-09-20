@@ -1,0 +1,10 @@
+.gradle
+/local.properties
+.idea/
+.DS_Store
+build
+gen
+lint.xml
+*.iml
+*.ipr
+

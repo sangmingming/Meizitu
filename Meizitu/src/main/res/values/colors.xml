@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="main_bg">#14439C</color>
+    <color name="dark_blue">#25865E</color>
+    <color name="light_blue">#7FC5B0</color>
+    <color name="light_yellow">#FFF6F7</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="drawer_bg">#ff9661ba</color>
+    <color name="tishi">#fffefff9</color>
+    <color name="tishi_back">#c62a2b2a</color>
+
+
+    <!-- A light Holo shade of blue -->
+    <color name="holo_blue_light">#ff33b5e5</color>
+    <!-- A light Holo shade of green -->
+    <color name="holo_green_light">#ff99cc00</color>
+    <!-- A light Holo shade of red -->
+    <color name="holo_red_light">#ffff4444</color>
+    <!-- A light Holo shade of orange -->
+    <color name="holo_orange_light">#ffffbb33</color>
+</resources>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="me.isming.meizitu.app" >
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:name="me.isming.meizitu.App"
+        android:theme="@style/AppTheme" >
+        <provider
+            android:name="me.isming.meizitu.dao.DataProvider"
+            android:authorities="me.isming.meizitu.provider"
+            android:exported="false">
+            <grant-uri-permission android:pathPattern=".*"/>
+        </provider>
+        <activity
+            android:name="me.isming.meizitu.app.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="me.isming.meizitu.app.ImageViewActivity"
+            android:label="@string/app_name" />
+        <activity android:name="com.umeng.fb.ConversationActivity"
+                  android:theme="@android:style/Theme.NoTitleBar"/>
+        <activity android:name="com.umeng.fb.ContactActivity"
+                  android:theme="@android:style/Theme.NoTitleBar"/>
+        <service
+            android:name="com.umeng.common.net.DownloadingService"
+            android:process=":DownloadingService" >
+        </service>
+        <activity
+            android:name="com.umeng.update.UpdateDialogActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+
+        <meta-data android:value="5357d90a56240b77310652f4" android:name="UMENG_APPKEY"></meta-data>
+        <meta-data android:value="UMENG_CHANNEL_VALUE" android:name="UMENG_CHANNEL"/>
+    </application>
+
+</manifest>
