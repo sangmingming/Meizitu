@@ -3,10 +3,10 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.9.+'
+        classpath 'com.android.tools.build:gradle:0.12.+'
     }
 }
-apply plugin: 'android'
+apply plugin: 'com.android.application'
 
 repositories {
     mavenCentral()
@@ -14,7 +14,7 @@ repositories {
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.0.3"
+    buildToolsVersion "20.0.0"
 
     defaultConfig {
         minSdkVersion 8
@@ -94,19 +94,19 @@ android.applicationVariants.all{ variant ->
         //${buildDir}是指./build文件夹
         //${variant.dirName}是flavor/buildtype，例如GooglePlay/release，运行时会自动生成
         //下面的路径是类似这样：./build/manifests/GooglePlay/release/AndroidManifest.xml
-        def manifestFile = "${buildDir}/manifests/${variant.dirName}/AndroidManifest.xml"
+        def manifestFile = "${buildDir}/intermediates/manifests/${variant.dirName}/AndroidManifest.xml"
 
         //将字符串UMENG_CHANNEL_VALUE替换成flavor的名字
         def updatedContent = new File(manifestFile).getText('UTF-8').replaceAll("UMENG_CHANNEL_VALUE", "${variant.productFlavors[0].name}")
         new File(manifestFile).write(updatedContent, 'UTF-8')
 
         //将此次flavor的AndroidManifest.xml文件指定为我们修改过的这个文件
-        variant.processResources.manifestFile = file("${buildDir}/manifests/${variant.dirName}/AndroidManifest.xml")
+        variant.processResources.manifestFile = file("${buildDir}/intermediates/manifests/${variant.dirName}/AndroidManifest.xml")
     }
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:19.1.0'
-    compile 'com.android.support:support-v4:19.1.0'
+    compile 'com.android.support:appcompat-v7:20.0.0'
+    compile 'com.android.support:support-v4:20.0.0'
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }
