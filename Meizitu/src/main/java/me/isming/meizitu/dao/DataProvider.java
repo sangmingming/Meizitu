@@ -25,8 +25,13 @@ public class DataProvider extends ContentProvider {
     // messages
     public static final String PATH_FEEDS = "/feeds";
 
+    public static final String PATH_LIKES = "/likes";
+
     public static final Uri FEEDS_CONTENT_URI = Uri.parse(SCHEME + AUTHORITY + PATH_FEEDS);
 
+    public static final Uri LIKES_CONTENT_URI = Uri.parse(SCHEME + AUTHORITY + PATH_LIKES);
+
+    private static final int LIKES = 1;
     private static final int FEEDS = 0;
 
     /*
@@ -34,11 +39,14 @@ public class DataProvider extends ContentProvider {
      */
     public static final String FEED_CONTENT_TYPE = "vnd.android.cursor.dir/vnd.me.isming.meizitu.feed";
 
+    public static final String LIKE_CONTENT_TYPE = "vnd.android.cursor.dir/vnd.me.isming.meizitu.like";
+
     private static final UriMatcher sUriMatcher;
 
     static {
         sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         sUriMatcher.addURI(AUTHORITY, "feeds", FEEDS);
+        sUriMatcher.addURI(AUTHORITY, "likes", LIKES);
     }
 
     private static DBHelper mDBHelper;
@@ -83,6 +91,8 @@ public class DataProvider extends ContentProvider {
         switch (sUriMatcher.match(uri)) {
             case FEEDS:
                 return FEED_CONTENT_TYPE;
+            case LIKES:
+                return  LIKE_CONTENT_TYPE;
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);
         }
@@ -155,6 +165,9 @@ public class DataProvider extends ContentProvider {
         switch (sUriMatcher.match(uri)) {
             case FEEDS:
                 table = FeedsDataHelper.FeedsDBInfo.TABLE_NAME;
+                break;
+            case LIKES:
+                table = LikesDataHelper.FeedsDBInfo.TABLE_NAME;
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);

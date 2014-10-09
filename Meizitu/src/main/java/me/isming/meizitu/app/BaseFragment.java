@@ -21,6 +21,8 @@ public class BaseFragment extends Fragment {
         RequestManager.cancelAll(this);
     }
 
+    public void scrollTopAndRefresh(){}
+
     protected void executeRequest(Request request) {
         RequestManager.addRequest(request, this);
     }

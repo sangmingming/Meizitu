@@ -1,23 +1,12 @@
 package me.isming.meizitu.app;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.fb.FeedbackAgent;
@@ -35,7 +24,7 @@ public class AppMainActivity extends BaseActivity
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
-    private FeedsFragment mContentFragment;
+    private BaseFragment mContentFragment;
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -65,7 +54,14 @@ public class AppMainActivity extends BaseActivity
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
-        mContentFragment = FeedsFragment.newInstance(position + 1);
+        if (position == 0) {
+            mContentFragment = FeedsFragment.newInstance(position + 1);
+        }
+
+        if (position == 1) {
+            mContentFragment = LikesFragment.newInstance(position + 1);
+        }
+
         fragmentManager.beginTransaction()
                 .replace(R.id.container, mContentFragment)
                 .commit();
