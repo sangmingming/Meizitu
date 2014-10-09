@@ -27,19 +27,18 @@ android {
         abortOnError false
     }
 
-
 //签名
     signingConfigs {
         debug {
-            storeFile file("/home/sam/.android/debug.keystore")
+            //storeFile file("/home/sam/.android/debug.keystore")
         }
 
         //你自己的keystore信息
         release {
-            storeFile file("/home/sam/sangmingming.keystore")
-            storePassword "ming1990"
-            keyAlias "sam"
-            keyPassword "ming1990"
+            //storeFile file("/home/sam/sangmingming.keystore")
+            //storePassword "ming1990"
+            //keyAlias "sam"
+            //keyPassword "ming1990"
         }
     }
 
@@ -72,23 +71,20 @@ android {
         //EoeMarket{}
         //Store91{}
         //NDuo{}
-        xiaomi{}
-        umeng{}
+        xiaomi {}
+        umeng {}
     }
 
 
-
-
 }
-
 
 //tasks.withType() {
 //    options.encoding = "UTF-8"
 //}
 
 //替换AndroidManifest.xml的UMENG_CHANNEL_VALUE字符串为渠道名称
-android.applicationVariants.all{ variant ->
-    variant.processManifest.doLast{
+android.applicationVariants.all { variant ->
+    variant.processManifest.doLast {
 
         //之前这里用的copy{}，我换成了文件操作，这样可以在v1.11版本正常运行，并保持文件夹整洁
         //${buildDir}是指./build文件夹
@@ -106,7 +102,7 @@ android.applicationVariants.all{ variant ->
 }
 
 dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:20.0.0'
     compile 'com.android.support:support-v4:20.0.0'
-    compile fileTree(dir: 'libs', include: ['*.jar'])
 }

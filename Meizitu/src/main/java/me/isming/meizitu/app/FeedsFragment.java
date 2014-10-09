@@ -1,5 +1,6 @@
 package me.isming.meizitu.app;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
@@ -38,6 +39,8 @@ import java.util.ArrayList;
  */
 public class FeedsFragment extends BaseFragment implements  LoaderManager.LoaderCallbacks<Cursor>,SwipeRefreshLayout.OnRefreshListener {
 
+    private static final String ARG_SECTION_NUMBER = "section_number";
+
     SwipeRefreshLayout mSwipeLayout;
 
     PageListView mListView;
@@ -48,8 +51,11 @@ public class FeedsFragment extends BaseFragment implements  LoaderManager.Loader
     private int mSinceId = 0;
     private String mString = "http://www.ourhfuu.com/meizitu.php";
 
-    public static FeedsFragment newInstance() {
+    public static FeedsFragment newInstance(int sectionNumber) {
         FeedsFragment fragment = new FeedsFragment();
+        Bundle args = new Bundle();
+        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+        fragment.setArguments(args);
         return fragment;
     }
 
@@ -230,5 +236,12 @@ public class FeedsFragment extends BaseFragment implements  LoaderManager.Loader
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         mAdapter.changeCursor(null);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        ((AppMainActivity) activity).onSectionAttached(
+                getArguments().getInt(ARG_SECTION_NUMBER));
     }
 }

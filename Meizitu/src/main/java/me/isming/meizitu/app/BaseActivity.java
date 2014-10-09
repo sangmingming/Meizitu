@@ -12,7 +12,7 @@ import me.isming.meizitu.data.RequestManager;
 
 
 /**
- * Created by storm on 14-3-24.
+ * Created by sam on 14-3-24.
  */
 public abstract class BaseActivity extends ActionBarActivity {
 

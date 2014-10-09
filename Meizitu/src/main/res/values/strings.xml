@@ -8,13 +8,14 @@
     <string name="the_end">TheEnd</string>
     <string name="action_refresh">刷新</string>
     <string name="view_big_image">查看大图</string>
-    <string name="pref_summary_dev">Developer</string>
-    <string name="pref_title_about">About</string>
-    <string name="pref_title_coder">stormzhang</string>
     <string name="pref_key_version">pref_key_version</string>
-    <string name="pref_title_github">Github</string>
     <string name="action_feedback">反馈</string>
     <string name="down_img">保存到本地</string>
     <string name="no_sdcard">没有存储设备，无法保存图片</string>
-
+    <string name="title_activity_app_main">AppMainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Example action</string>
+    <string name="title_new">最新</string>
+    <string name="title_like">收藏</string>
 </resources>
