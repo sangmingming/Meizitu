@@ -23,6 +23,9 @@ import com.umeng.analytics.MobclickAgent;
 import com.umeng.fb.FeedbackAgent;
 import com.umeng.update.UmengUpdateAgent;
 
+import me.isming.meizitu.util.CLog;
+import me.isming.meizitu.util.DeviceUtil;
+
 
 public class AppMainActivity extends BaseActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -55,6 +58,7 @@ public class AppMainActivity extends BaseActivity
 
         MobclickAgent.updateOnlineConfig(this);
         UmengUpdateAgent.update(this);
+        CLog.i(DeviceUtil.getDeviceInfo(this));
     }
 
     @Override

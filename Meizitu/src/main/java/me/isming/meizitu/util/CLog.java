@@ -14,8 +14,8 @@ public class CLog {
     public static boolean isDebug = true;
     private static CLog sInstance;
 
-    private CLog() { }
-
+    private CLog()
+    { }
     private CLog(String tag) {
         this.tag = tag;
     }
