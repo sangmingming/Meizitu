@@ -1,11 +1,11 @@
 <resources>
 
     <!-- Application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!--<item name="windowActionBarOverlay">true</item>-->
-        <!--<item name="android:windowBackground">@drawable/main_bg</item>-->
-        <!--<item name="app:actionBarStyle">@style/ActionbarStyle</item>-->
-        <!--<item name="app:actionOverflowButtonStyle">@style/ActionbarOverFlowStyle</item>-->
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <!-- customize the color palette -->
+        <item name="colorPrimary">@color/material_500</item>
+        <item name="colorPrimaryDark">@color/material_700</item>
+        <item name="colorAccent">@color/material_a200</item>
     </style>
 
     <!--<style name="ActionbarStyle" parent="Theme.Widget.Holo.ActionBar">-->

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+        <!-- inherit from the material theme -->
+        <style name="AppTheme" parent="android:Theme.Material">
+            <!-- customize the color palette -->
+            <item name="android:colorPrimary">@color/material_500</item>
+            <item name="android:colorPrimaryDark">@color/material_700</item>
+            <item name="android:colorAccent">@color/material_a200</item>
+        </style>
+</resources>
