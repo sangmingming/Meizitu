@@ -20,7 +20,7 @@ import me.isming.meizitu.model.Feed;
 
 
 /**
- * Created by storm on 14-3-26.
+ * Created by Sam on 14-3-26.
  */
 public class FeedsAdapter extends CursorAdapter {
     private LayoutInflater mLayoutInflater;

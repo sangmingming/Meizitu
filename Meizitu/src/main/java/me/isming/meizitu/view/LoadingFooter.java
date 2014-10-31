@@ -8,7 +8,7 @@ import android.widget.TextView;
 import me.isming.meizitu.app.R;
 
 /**
- * Created by storm on 14-4-12.
+ * Created by Sam on 14-4-12.
  */
 public class LoadingFooter {
     protected View mLoadingFooter;

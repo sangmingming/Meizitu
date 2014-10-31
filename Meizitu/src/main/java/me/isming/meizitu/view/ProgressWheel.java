@@ -14,7 +14,7 @@ import android.view.View;
 import me.isming.meizitu.app.R;
 
 /**
- * Created by storm on 14-4-15.
+ * Created by sam on 14-4-15.
  */
 public class ProgressWheel extends View {
 

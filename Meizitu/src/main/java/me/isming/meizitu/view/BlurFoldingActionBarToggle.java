@@ -5,7 +5,7 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 
 /**
- * Created by storm on 14-4-19.
+ * Created by Sam on 14-4-19.
  *
  * 自定义的ActionBarDrawerToggle,同时实现折叠和毛玻璃效果
  */

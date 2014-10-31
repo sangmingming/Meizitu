@@ -25,7 +25,7 @@ import me.isming.meizitu.view.PageListView;
 
 
 /**
- * Created by storm on 14-3-25.
+ * Created by Sam on 14-3-25.
  */
 public class LikesFragment extends BaseFragment implements  LoaderManager.LoaderCallbacks<Cursor> {
 

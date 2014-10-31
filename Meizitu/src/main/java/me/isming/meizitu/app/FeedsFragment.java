@@ -35,7 +35,7 @@ import java.util.ArrayList;
 
 
 /**
- * Created by storm on 14-3-25.
+ * Created by Sam on 14-3-25.
  */
 public class FeedsFragment extends BaseFragment implements  LoaderManager.LoaderCallbacks<Cursor>,SwipeRefreshLayout.OnRefreshListener {
 

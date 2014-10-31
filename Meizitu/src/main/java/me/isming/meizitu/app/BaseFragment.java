@@ -11,7 +11,7 @@ import me.isming.meizitu.App;
 import me.isming.meizitu.data.RequestManager;
 
 /**
- * Created by storm on 14-3-25.
+ * Created by Sam on 14-3-25.
  */
 public class BaseFragment extends Fragment {
 

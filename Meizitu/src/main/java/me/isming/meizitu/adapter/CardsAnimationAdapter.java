@@ -8,7 +8,7 @@ import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.ObjectAnimator;
 
 /**
- * Created by storm on 14-4-15.
+ * Created by Sam on 14-4-15.
  */
 public class CardsAnimationAdapter extends AnimationAdapter {
     private float mTranslationY = 400;

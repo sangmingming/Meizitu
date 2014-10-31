@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by storm on 14-4-19.
+ * Created by Sam on 14-4-19.
  *
  * 修复不能自定义DrawerListener的bug
  */

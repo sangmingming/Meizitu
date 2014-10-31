@@ -3,7 +3,7 @@ package me.isming.meizitu.util;
 import android.os.Build;
 
 /**
- * Created by storm on 14-4-15.
+ * Created by sam on 14-4-15.
  */
 public class VersionUtils {
     public static final boolean IS_JBMR2 = Build.VERSION.SDK_INT == Build.VERSION_CODES.JELLY_BEAN_MR2;

@@ -6,7 +6,7 @@ import android.widget.AbsListView;
 import android.widget.ListView;
 
 /**
- * Created by storm on 14-4-14.
+ * Created by Sam on 14-4-14.
  */
 public class PageListView extends ListView implements AbsListView.OnScrollListener {
     private LoadingFooter mLoadingFooter;

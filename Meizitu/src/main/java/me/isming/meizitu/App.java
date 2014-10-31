@@ -9,7 +9,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
 /**
- * Created by storm on 14-3-24.
+ * Created by Sam on 14-3-24.
  */
 public class App extends Application {
     private static Context sContext;

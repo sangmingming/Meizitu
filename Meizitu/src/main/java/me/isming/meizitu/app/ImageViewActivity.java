@@ -33,7 +33,7 @@ import java.util.ArrayList;
 
 
 /**
- * Created by storm on 14-4-15.
+ * Created by Sam on 14-4-15.
  */
 public class ImageViewActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
     public static final String IMAGE_URL = "image_url";
