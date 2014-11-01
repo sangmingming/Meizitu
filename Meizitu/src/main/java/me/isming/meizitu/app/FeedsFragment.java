@@ -66,6 +66,7 @@ public class FeedsFragment extends BaseFragment implements  LoaderManager.Loader
         mListView = (PageListView)contentView.findViewById(R.id.listView);
         mSwipeLayout = (SwipeRefreshLayout) contentView.findViewById(R.id.swipe_container);
 
+        mSwipeLayout.setSize(SwipeRefreshLayout.LARGE);
         mDataHelper = new FeedsDataHelper(App.getContext());
         getLoaderManager().initLoader(0, null, this);
         mAdapter = new FeedsAdapter(getActivity(), mListView);
