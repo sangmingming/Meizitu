@@ -1,7 +1,9 @@
 <resources>
 
+    <style name="AppTheme" parent="AppTheme.Base" />
+
     <!-- Application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light">
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light">
         <!-- customize the color palette -->
         <item name="colorPrimary">@color/material_500</item>
         <item name="colorPrimaryDark">@color/material_700</item>
