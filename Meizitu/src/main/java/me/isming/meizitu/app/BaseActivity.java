@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -29,10 +30,10 @@ public abstract class BaseActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            int uioption = getWindow().getDecorView().getSystemUiVisibility();
-            getWindow().getDecorView().setSystemUiVisibility(
-                    uioption | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+            //UIUtils.setSystemBarTintColor(this);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             UIUtils.setSystemBarTintColor(this);
+
         }
 
 //        Window window = getWindow();

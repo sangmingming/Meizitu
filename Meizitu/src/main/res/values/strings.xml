@@ -12,7 +12,7 @@
     <string name="action_feedback">反馈</string>
     <string name="down_img">保存到本地</string>
     <string name="no_sdcard">没有存储设备，无法保存图片</string>
-    <string name="title_activity_app_main">AppMainActivity</string>
+    <string name="title_activity_app_main">妹子图</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
