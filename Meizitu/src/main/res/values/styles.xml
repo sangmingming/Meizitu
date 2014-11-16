@@ -3,7 +3,7 @@
     <style name="AppTheme" parent="AppTheme.Base" />
 
     <!-- Application theme. -->
-    <style name="AppTheme.Base" parent="Theme.AppCompat.Light">
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- customize the color palette -->
         <item name="colorPrimary">@color/material_500</item>
         <item name="colorPrimaryDark">@color/material_700</item>
@@ -11,7 +11,7 @@
         <item name="actionBarStyle">@style/MyActionBar</item>
     </style>
 
-    <style name="MyActionBar" parent="Widget.AppCompat.Light.ActionBar">
+    <style name="MyActionBar" parent="Widget.AppCompat.ActionBar">
         <item name="titleTextStyle">@style/ActionBar.TitleText</item>
         <item name="background">@color/material_500</item>
         <item name="actionBarItemBackground">@color/material_500</item>
