@@ -45,7 +45,7 @@
             android:value="5357d90a56240b77310652f4" />
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="UMENG_CHANNEL_VALUE" />
+            android:value="${UMENG_CHANNEL_VALUE}" />
 
         <activity
             android:name="me.isming.meizitu.app.AppMainActivity"

@@ -1,11 +1,3 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:0.14.+'
-    }
-}
 apply plugin: 'com.android.application'
 
 repositories {
@@ -14,13 +6,16 @@ repositories {
 
 android {
     compileSdkVersion 21
-    buildToolsVersion "21.0.1"
+    buildToolsVersion "21.1.0"
 
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 21
         versionCode 3
         versionName "1.1.1"
+        multiDexEnabled false
+        manifestPlaceholders = [ UMENG_CHANNEL_VALUE:"default_channel" ]
+        buildConfigField "boolean", "ISDEBUG", "true"
     }
 
     lintOptions {
@@ -46,11 +41,14 @@ android {
 
         debug {
             signingConfig signingConfigs.debug
+            buildConfigField "boolean", "ISDEBUG", "true"
         }
 
         release {
+            buildConfigField "boolean", "ISDEBUG", "true"
             signingConfig signingConfigs.release
-            runProguard false
+            minifyEnabled true
+            zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
@@ -80,35 +78,32 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
+
+    productFlavors.all { flavor ->
+        flavor.manifestPlaceholders = [ UMENG_CHANNEL_VALUE:name ]
+    }
+
+    applicationVariants.all { variant ->
+
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                def fileName = outputFile.name.replace(".apk", "-${defaultConfig.versionName}.apk")
+                output.outputFile = new File(outputFile.parent, fileName)
+            }
+        }
+    }
 }
 
 //tasks.withType() {
 //    options.encoding = "UTF-8"
 //}
 
-//替换AndroidManifest.xml的UMENG_CHANNEL_VALUE字符串为渠道名称
-android.applicationVariants.all { variant ->
-    variant.processManifest.doLast {
-
-        //之前这里用的copy{}，我换成了文件操作，这样可以在v1.11版本正常运行，并保持文件夹整洁
-        //${buildDir}是指./build文件夹
-        //${variant.dirName}是flavor/buildtype，例如GooglePlay/release，运行时会自动生成
-        //下面的路径是类似这样：./build/manifests/GooglePlay/release/AndroidManifest.xml
-        def manifestFile = "${buildDir}/intermediates/manifests/${variant.dirName}/AndroidManifest.xml"
-
-        //将字符串UMENG_CHANNEL_VALUE替换成flavor的名字
-        def updatedContent = new File(manifestFile).getText('UTF-8').replaceAll("UMENG_CHANNEL_VALUE", "${variant.productFlavors[0].name}")
-        new File(manifestFile).write(updatedContent, 'UTF-8')
-
-        //将此次flavor的AndroidManifest.xml文件指定为我们修改过的这个文件
-        variant.processResources.manifestFile = file("${buildDir}/intermediates/manifests/${variant.dirName}/AndroidManifest.xml")
-    }
-}
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:21.0.+'
-    compile 'com.android.support:support-v4:21.0.+'
-    compile 'com.android.support:cardview-v7:21.0.+'
-    compile 'com.android.support:recyclerview-v7:21.0.+'
+    compile 'com.android.support:appcompat-v7:21.+'
+    compile 'com.android.support:support-v4:21.+'
+    compile 'com.android.support:cardview-v7:21.+'
+    compile 'com.android.support:recyclerview-v7:21.+'
 }
