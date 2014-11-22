@@ -98,16 +98,14 @@ public class FeedsFragment extends BaseFragment implements  LoaderManager.Loader
                 Feed feed = mAdapter.getItem(position-mListView.getHeaderViewsCount());
                 intent.putExtra(ImageViewActivity.IMAGE_NAME, feed.getName());
                 intent.putStringArrayListExtra(ImageViewActivity.IMAGE_URL, feed.getImgs());
+                intent.putExtra(ImageViewActivity.IMAGE_ID, feed.getId());
                 ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
             }
         });
 
         initActionBar();
         mSwipeLayout.setOnRefreshListener(this);
-        mSwipeLayout.setColorScheme(R.color.holo_blue_light,
-                R.color.holo_green_light,
-                R.color.holo_orange_light,
-                R.color.holo_red_light);
+        mSwipeLayout.setColorSchemeResources(R.color.material_700, R.color.material_500);
 
         return contentView;
     }

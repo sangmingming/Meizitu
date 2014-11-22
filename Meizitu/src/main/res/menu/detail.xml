@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:meizitu="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_like"
+        android:title="@string/title_like"
+        android:icon="@drawable/ic_favorite_outline"
+        meizitu:showAsAction="always"/>
+
+    <item
+        android:id="@+id/action_down"
+        android:title="@string/down_img"
+        android:icon="@drawable/ic_file_download"
+        meizitu:showAsAction="always"/>
+</menu>

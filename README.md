@@ -22,4 +22,5 @@ Android5.0版本要求必须使用JDK7+,因此我们的配置是使用target5.0,
 
 如果还有其他疑问可以在我博客留言，或者给我发邮件
 blog:[blog.isming.me](http://blog.isming.me)
+
 mail: linming1007@gmail.com

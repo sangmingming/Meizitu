@@ -22,22 +22,7 @@
         android:layout_alignParentLeft="true"
         android:textColor="@color/tishi"
         android:background="@color/tishi_back"
-        android:layout_toLeftOf="@+id/down"
         android:padding="10dp"
         />
-    <TextView
-        android:textSize="18sp"
-        android:id="@+id/down"
-        android:drawableLeft="@drawable/btn_down"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:textColor="@color/tishi"
-        android:background="@color/tishi_back"
-        android:text="@string/down_img"
-        android:padding="10dp"
-        android:onClick="savePicture"
-        android:clickable="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
 
 </RelativeLayout>

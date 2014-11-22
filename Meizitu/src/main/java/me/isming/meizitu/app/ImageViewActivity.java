@@ -8,6 +8,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -20,6 +21,9 @@ import com.nostra13.universalimageloader.core.assist.ImageLoadingProgressListene
 import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
 
 import com.umeng.analytics.MobclickAgent;
+
+import me.isming.meizitu.dao.LikesDataHelper;
+import me.isming.meizitu.model.Feed;
 import me.isming.meizitu.util.CToast;
 import me.isming.meizitu.view.ProgressWheel;
 import uk.co.senab.photoview.PhotoView;
@@ -38,6 +42,7 @@ import java.util.ArrayList;
 public class ImageViewActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
     public static final String IMAGE_URL = "image_url";
     public static final String IMAGE_NAME = "image_name";
+    public static final String IMAGE_ID = "image_id";
 
     //PhotoView photoView;
 
@@ -51,6 +56,9 @@ public class ImageViewActivity extends BaseActivity implements ViewPager.OnPageC
     private ViewPager pager;
     private String mName;
     private TextView tv;
+    private int mId;
+    private boolean mIsFavd;
+    private LikesDataHelper mLikeHelper;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +71,14 @@ public class ImageViewActivity extends BaseActivity implements ViewPager.OnPageC
         //Type t = new TypeToken<String>(){}.getType();
         urls = getIntent().getStringArrayListExtra(IMAGE_URL);
         mName = getIntent().getStringExtra(IMAGE_NAME);
+        mId = getIntent().getIntExtra(IMAGE_ID, -1);
+        if (mId <= 0) {
+            finish();
+            return;
+        }
+
+        mLikeHelper = new LikesDataHelper(this);
+        mIsFavd = mLikeHelper.query(mId) != null ;
         setTitle(mName);
         views = new ArrayList<View>();
         tv = (TextView) findViewById(R.id.textView);
@@ -136,10 +152,34 @@ public class ImageViewActivity extends BaseActivity implements ViewPager.OnPageC
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.detail, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem item = menu.findItem(R.id.action_like);
+        if (mIsFavd) {
+            item.setIcon(R.drawable.ic_favorite_white);
+        } else {
+            item.setIcon(R.drawable.ic_favorite_outline);
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
+                return true;
+            case R.id.action_like:
+                doFav();
+                return true;
+            case R.id.action_down:
+                savePicture();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -148,6 +188,9 @@ public class ImageViewActivity extends BaseActivity implements ViewPager.OnPageC
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if (mAttachers == null) {
+            return;
+        }
         for(int i=0;i<mAttachers.size();i++) {
             if (mAttachers.get(i) != null) {
                 mAttachers.get(i).cleanup();
@@ -171,18 +214,38 @@ public class ImageViewActivity extends BaseActivity implements ViewPager.OnPageC
 
     }
 
-    public void onResume() {
+    @Override
+    protected void onResume() {
         super.onResume();
         MobclickAgent.onPageStart("ImageViewAct"+mName); //统计页面
         MobclickAgent.onResume(this);          //统计时长
     }
-    public void onPause() {
+
+    @Override
+    protected void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("ImageViewAct"+mName); // 保证 onPageEnd 在onPause 之前调用,因为 onPause 中会保存信息
         MobclickAgent.onPause(this);
     }
 
-    public void savePicture(View view) {
+    private void doFav() {
+        if (mIsFavd) {
+            mLikeHelper.delete(mId);
+        } else {
+            Feed feed = new Feed();
+            feed.setImgs(urls);
+            feed.setName(mName);
+            feed.setId(mId);
+
+            mLikeHelper.insert(feed);
+        }
+        mIsFavd = !mIsFavd;
+
+        invalidateOptionsMenu();
+
+    }
+
+    private void savePicture() {
         if (pager == null || photoViews == null) {
             return ;
         }

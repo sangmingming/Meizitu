@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -70,19 +72,21 @@ public class LikesFragment extends BaseFragment implements  LoaderManager.Loader
                 if(actualPosition<0) {
                     return;
                 }
+
+                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity());
+
                 Intent intent = new Intent(getActivity(), ImageViewActivity.class);
                 Feed feed = mAdapter.getItem(position-mListView.getHeaderViewsCount());
                 intent.putExtra(ImageViewActivity.IMAGE_NAME, feed.getName());
                 intent.putStringArrayListExtra(ImageViewActivity.IMAGE_URL, feed.getImgs());
-                startActivity(intent);
+                intent.putExtra(ImageViewActivity.IMAGE_ID, feed.getId());
+                ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
             }
         });
+        mListView.setLoadNextListener(null);
 
         initActionBar();
-        mSwipeLayout.setColorScheme(R.color.holo_blue_light,
-                R.color.holo_green_light,
-                R.color.holo_orange_light,
-                R.color.holo_red_light);
+        mSwipeLayout.setColorSchemeResources(R.color.material_700, R.color.material_500);
 
         return contentView;
     }
