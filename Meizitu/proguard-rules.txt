@@ -16,13 +16,9 @@
 #   public *;
 #}
 
-# 添加第三方jar包
--libraryjars libs/umeng_sdk.jar
--libraryjars libs/gson-2.2.4.jar
--libraryjars libs/listviewanimations-2.6.0.jar
--libraryjars libs/photoviewlibrary.jar
--libraryjars libs/universal-image-loader-1.9.1.jar
--libraryjars libs/volley.jar
+-keepattributes SourceFile,LineNumberTable,Signature
+
+
 # 以下类过滤不混淆
 -keep public class * extends com.umeng.**
 # 以下包不进行过滤
@@ -31,9 +27,24 @@
    public <init>(org.json.JSONObject);
 }
 
+## annotations.jar
+-keep public class android.annotation {*;}
+
+## support-v4
 -dontwarn android.support.v4.**
 -keep class android.support.v4.** { *; }
 -keep interface android.support.v4.app.** { *; }
+-keep public class * extends android.support.v4.**
+-keep public class * extends android.app.Fragment
+
+## PhotoView
+-keep public class uk.co.senab.photoview.** {*;}
+
+## Gson
+-keepattributes *Annotation*
+-keep class sun.misc.Unsafe { *; }
+-keep class me.isming.meizitu.model.** { *;}
+-keep class com.google.gson.stream.** { *; }
 
 -keep public class me.isming.meizitu.app.R$*{
 public static final int *;
@@ -44,6 +55,4 @@ public static final int *;
 -keepclassmembers class **.R$* {
     public static <fields>;
 }
-
--keep class me.isming.meizitu.data.** { *; }
 

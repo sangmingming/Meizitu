@@ -11,8 +11,8 @@ android {
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 21
-        versionCode 3
-        versionName "1.1.1"
+        versionCode 12
+        versionName "1.2.0"
         multiDexEnabled false
         manifestPlaceholders = [ UMENG_CHANNEL_VALUE:"default_channel" ]
         buildConfigField "boolean", "ISDEBUG", "true"
@@ -30,10 +30,10 @@ android {
 
         //你自己的keystore信息
         release {
-            //storeFile file("/home/sam/sangmingming.keystore")
-            //storePassword "ming1990"
-            //keyAlias "sam"
-            //keyPassword "ming1990"
+            storeFile file("/home/sam/sangmingming.keystore")
+            storePassword "ming1990"
+            keyAlias "sam"
+            keyPassword "ming1990"
         }
     }
 
@@ -71,6 +71,9 @@ android {
         //NDuo{}
         xiaomi {}
         umeng {}
+        firIm{}
+        PuGongYing {}
+
     }
 
 
