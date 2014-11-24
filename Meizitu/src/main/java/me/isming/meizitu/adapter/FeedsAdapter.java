@@ -37,6 +37,9 @@ public class FeedsAdapter extends CursorAdapter {
 
     @Override
     public Feed getItem(int position) {
+        if (mCursor == null || mCursor.getCount() <= position) {
+            return null;
+        }
         mCursor.moveToPosition(position);
         return Feed.fromCursor(mCursor);
     }

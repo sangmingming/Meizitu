@@ -96,6 +96,9 @@ public class FeedsFragment extends BaseFragment implements  LoaderManager.Loader
 
                 Intent intent = new Intent(getActivity(), ImageViewActivity.class);
                 Feed feed = mAdapter.getItem(position-mListView.getHeaderViewsCount());
+                if (feed == null) {
+                    return;
+                }
                 intent.putExtra(ImageViewActivity.IMAGE_NAME, feed.getName());
                 intent.putStringArrayListExtra(ImageViewActivity.IMAGE_URL, feed.getImgs());
                 intent.putExtra(ImageViewActivity.IMAGE_ID, feed.getId());
