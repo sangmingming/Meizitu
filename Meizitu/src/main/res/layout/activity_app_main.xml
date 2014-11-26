@@ -5,7 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="80dp"
+    android:layout_marginTop="@dimen/layout_margin_top"
     tools:context="me.isming.meizitu.app.AppMainActivity">
 
     <!-- As the main content view, the view below consumes the entire
