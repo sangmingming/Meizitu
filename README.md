@@ -37,3 +37,5 @@ volley
 blog:[blog.isming.me](http://blog.isming.me)
 
 mail: linming1007@gmail.com
+
+微博: [@码农明明桑](http://weibo.com/mingmingsang)
