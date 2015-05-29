@@ -30,7 +30,7 @@ android {
 
         //你自己的keystore信息
         release {
-            storeFile file("/home/sam/sangmingming.keystore")
+            storeFile file("/Users/sam/sangmingming.keystore")
             storePassword "ming1990"
             keyAlias "sam"
             keyPassword "ming1990"
@@ -55,8 +55,8 @@ android {
 
     //渠道Flavors，我这里写了一些常用的，你们自己改
     productFlavors {
-        //GooglePlay{}
-        //Store360{}
+        GooglePlay{}
+        Store360{}
         //QQ{}
         //Taobao{}
         //WanDouJia{}
