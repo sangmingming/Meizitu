@@ -69,14 +69,14 @@ public class LikesFragment extends BaseFragment implements  LoaderManager.Loader
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int actualPosition = position - mListView.getHeaderViewsCount();
-                if(actualPosition<0) {
+                if (actualPosition < 0) {
                     return;
                 }
 
                 ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity());
 
                 Intent intent = new Intent(getActivity(), ImageViewActivity.class);
-                Feed feed = mAdapter.getItem(position-mListView.getHeaderViewsCount());
+                Feed feed = mAdapter.getItem(position - mListView.getHeaderViewsCount());
                 intent.putExtra(ImageViewActivity.IMAGE_NAME, feed.getName());
                 intent.putStringArrayListExtra(ImageViewActivity.IMAGE_URL, feed.getImgs());
                 intent.putExtra(ImageViewActivity.IMAGE_ID, feed.getId());
@@ -86,7 +86,8 @@ public class LikesFragment extends BaseFragment implements  LoaderManager.Loader
         mListView.setLoadNextListener(null);
 
         initActionBar();
-        mSwipeLayout.setColorSchemeResources(R.color.material_700, R.color.material_500);
+//        mSwipeLayout.setColorSchemeResources(R.color.material_700, R.color.material_500);
+        mSwipeLayout.setEnabled(false);
 
         return contentView;
     }

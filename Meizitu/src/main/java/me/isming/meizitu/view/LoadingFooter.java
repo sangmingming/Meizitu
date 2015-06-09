@@ -38,6 +38,7 @@ public class LoadingFooter {
         mAnimationDuration = context.getResources().getInteger(
                 android.R.integer.config_shortAnimTime);
         setState(State.Idle);
+        mLoadingFooter.setVisibility(View.GONE);
     }
 
     public View getView() {
