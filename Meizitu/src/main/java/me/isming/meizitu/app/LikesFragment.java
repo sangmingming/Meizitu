@@ -77,9 +77,9 @@ public class LikesFragment extends BaseFragment implements  LoaderManager.Loader
 
                 Intent intent = new Intent(getActivity(), ImageViewActivity.class);
                 Feed feed = mAdapter.getItem(position - mListView.getHeaderViewsCount());
-                intent.putExtra(ImageViewActivity.IMAGE_NAME, feed.getName());
+                intent.putExtra(ImageViewActivity.IMAGE_NAME, feed.getTitle());
                 intent.putStringArrayListExtra(ImageViewActivity.IMAGE_URL, feed.getImgs());
-                intent.putExtra(ImageViewActivity.IMAGE_ID, feed.getId());
+                intent.putExtra(ImageViewActivity.IMAGE_ID, feed.getId().toString());
                 ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
             }
         });

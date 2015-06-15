@@ -7,42 +7,71 @@ import me.isming.meizitu.dao.FeedsDataHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * Created by sam on 14-4-22.
  */
 public class Feed extends BaseModel {
-    private int id;
-    private String name;
-    private ArrayList<String> tags;
+    private UUID id;
+    private Map<String, String> author;
+    private String date;
     private ArrayList<String> imgs;
+    private String title;
+    private String url;
 
-    public Feed() {
+    public Map<String, String> getAuthor() {
+        return author;
     }
 
-    public int getId() {
+    public void setAuthor(Map<String, String> author) {
+        this.author = author;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public Feed() {
+        id = UUID.randomUUID();
+    }
+
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public ArrayList<String> getTags() {
-        return tags;
-    }
-
-    public void setTags(ArrayList<String> tags) {
-        this.tags = tags;
-    }
+//    public ArrayList<String> getTags() {
+//        return tags;
+//    }
+//
+//    public void setTags(ArrayList<String> tags) {
+//        this.tags = tags;
+//    }
 
     public ArrayList<String> getImgs() {
         return imgs;
@@ -58,21 +87,38 @@ public class Feed extends BaseModel {
 
     public static Feed fromCursor(Cursor cursor) {
         Feed feed = new Feed();
-        feed.setId(cursor.getInt(cursor.getColumnIndex(FeedsDataHelper.FeedsDBInfo.ID)));
-        feed.setName(cursor.getString(cursor.getColumnIndex(FeedsDataHelper.FeedsDBInfo.NAME)));
-        feed.setTags((ArrayList<String>) new Gson().fromJson(
-                cursor.getString(cursor.getColumnIndex(FeedsDataHelper.FeedsDBInfo.TAGS)),
-                new TypeToken<List<String>>(){}.getType()));
+        feed.setId(UUID.fromString(cursor.getString(cursor.getColumnIndex(FeedsDataHelper.FeedsDBInfo.ID))));
+        feed.setTitle(cursor.getString(cursor.getColumnIndex(FeedsDataHelper.FeedsDBInfo.TITLE)));
+        feed.setAuthor((Map<String, String>) new Gson().fromJson(
+                cursor.getString(cursor.getColumnIndex(FeedsDataHelper.FeedsDBInfo.AUTHOR)),
+                new TypeToken<Map<String, String>>() {
+                }.getType()));
         feed.setImgs((ArrayList<String>) new Gson().fromJson(
                 cursor.getString(cursor.getColumnIndex(FeedsDataHelper.FeedsDBInfo.IMGS)),
-                new TypeToken<List<String>>(){}.getType()));
+                new TypeToken<List<String>>() {
+                }.getType()));
+        feed.setDate(cursor.getString(cursor.getColumnIndex(FeedsDataHelper.FeedsDBInfo.DATE)));
+        feed.setUrl(cursor.getString(cursor.getColumnIndex(FeedsDataHelper.FeedsDBInfo.URL)));
         return feed;
     }
 
     public static class FeedRequestData {
-        public int status;
-        public String msg;
+//        public int status;
+//        public String msg;
         public ArrayList<Feed> data;
 
     }
+
+//    public static class Item {
+////        public Result result;
+////        public static class Result {
+//            public Map<String, String> author;
+//            public String date;
+//            public ArrayList<String> imgs;
+//            public String title;
+////            public String taskid;
+////            public String updatetime;
+//            public String url;
+////        }
+//    }
 }

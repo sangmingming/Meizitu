@@ -32,18 +32,20 @@ public class LikesDataHelper extends BaseDataHelper {
 
     private ContentValues getContentValues(Feed feed) {
         ContentValues values = new ContentValues();
-        values.put(FeedsDBInfo.ID, feed.getId());
-        values.put(FeedsDBInfo.NAME, feed.getName());
-        values.put(FeedsDBInfo.TAGS, new Gson().toJson(feed.getTags()));
+        values.put(FeedsDBInfo.ID, feed.getId().toString());
+        values.put(FeedsDBInfo.AUTHOR, new Gson().toJson(feed.getAuthor()));
+        values.put(FeedsDBInfo.DATE, feed.getDate());
         values.put(FeedsDBInfo.IMGS, new Gson().toJson(feed.getImgs()));
+        values.put(FeedsDBInfo.TITLE, feed.getTitle());
+        values.put(FeedsDBInfo.URL, feed.getUrl());
         return values;
     }
 
-    public Feed query(int id) {
+    public Feed query(String id) {
         Feed feed = null;
         Cursor cursor = query(null,  FeedsDBInfo.ID + "= ?",
                 new String[] {
-                        String.valueOf(id)
+                        id
                 }, null);
         if (cursor.moveToFirst()) {
             feed = Feed.fromCursor(cursor);
@@ -76,11 +78,11 @@ public class LikesDataHelper extends BaseDataHelper {
         }
     }
 
-    public int delete(int id) {
+    public int delete(String id) {
         synchronized (DataProvider.DBLock) {
             DBHelper mDBHelper = DataProvider.getDBHelper();
             SQLiteDatabase db = mDBHelper.getWritableDatabase();
-            int row = db.delete(FeedsDBInfo.TABLE_NAME, FeedsDBInfo.ID + " = ?", new String[]{String.valueOf(id)});
+            int row = db.delete(FeedsDBInfo.TABLE_NAME, FeedsDBInfo.ID + " = ?", new String[]{id});
             return row;
         }
     }
@@ -96,17 +98,19 @@ public class LikesDataHelper extends BaseDataHelper {
         public static final String TABLE_NAME = "likes";
 
         public static final String ID = "id";
-
-        public static final String NAME = "name";
-
-        public static final String TAGS = "tags";
-
+        public static final String AUTHOR = "author";
+        public static final String DATE = "date";
         public static final String IMGS = "imgs";
+        public static final String TITLE = "title";
+        public static final String URL = "url";
+
 
         public static final SQLiteTable TABLE = new SQLiteTable(TABLE_NAME)
-                .addColumn(ID, Column.DataType.INTEGER)
-                .addColumn(NAME, Column.DataType.TEXT)
-                .addColumn(TAGS, Column.DataType.TEXT)
-                .addColumn(IMGS, Column.DataType.TEXT);
+                .addColumn(ID, Column.DataType.TEXT)
+                .addColumn(AUTHOR, Column.DataType.TEXT)
+                .addColumn(DATE, Column.DataType.TEXT)
+                .addColumn(IMGS, Column.DataType.TEXT)
+                .addColumn(TITLE, Column.DataType.TEXT)
+                .addColumn(URL, Column.DataType.TEXT);
     }
 }
