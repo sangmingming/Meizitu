@@ -69,7 +69,7 @@ public class FeedsAdapter extends CursorAdapter {
             holder.imageRequest = ImageCacheManager.loadImage(feed.getImgs().get(0), ImageCacheManager
                     .getImageListener(holder.image, mDefaultImageDrawable, mDefaultImageDrawable));
         }
-        holder.caption.setText(feed.getName());
+        holder.caption.setText(feed.getTitle());
     }
 
     static class Holder {

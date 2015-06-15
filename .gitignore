@@ -7,4 +7,5 @@ gen
 lint.xml
 *.iml
 *.ipr
-
+build.gradle
+gradle/

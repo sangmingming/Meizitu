@@ -34,6 +34,8 @@ import me.isming.meizitu.view.LoadingFooter;
 import me.isming.meizitu.view.PageListView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -51,7 +53,7 @@ public class FeedsFragment extends BaseFragment implements  LoaderManager.Loader
     private FeedsAdapter mAdapter;
     private int mMaxId = 0;
     private int mSinceId = 0;
-    private String mString = "http://www.ourhfuu.com/meizitu.php";
+    private String mString = "http://23.252.109.110:5000/results/dump/haixiuzu2.txt";
 
     public static FeedsFragment newInstance(int sectionNumber) {
         FeedsFragment fragment = new FeedsFragment();
@@ -99,9 +101,9 @@ public class FeedsFragment extends BaseFragment implements  LoaderManager.Loader
                 if (feed == null) {
                     return;
                 }
-                intent.putExtra(ImageViewActivity.IMAGE_NAME, feed.getName());
+                intent.putExtra(ImageViewActivity.IMAGE_NAME, feed.getTitle());
                 intent.putStringArrayListExtra(ImageViewActivity.IMAGE_URL, feed.getImgs());
-                intent.putExtra(ImageViewActivity.IMAGE_ID, feed.getId());
+                intent.putExtra(ImageViewActivity.IMAGE_ID, feed.getId().toString());
                 ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
             }
         });
@@ -142,7 +144,7 @@ public class FeedsFragment extends BaseFragment implements  LoaderManager.Loader
             mSwipeLayout.setRefreshing(true);
         }
         CLog.d("NExt"+getNextUrl());
-        executeRequest(new GsonRequest(getNextUrl(), Feed.FeedRequestData.class, responseListener(), errorListener()));
+        executeRequest(new GsonRequest(getNextUrl(), Feed[].class, responseListener(), errorListener()));
     }
 
     private void refreshData() {
@@ -150,33 +152,33 @@ public class FeedsFragment extends BaseFragment implements  LoaderManager.Loader
             mSwipeLayout.setRefreshing(true);
         }
         CLog.d("Refresh"+getRefreshUrl());
-        executeRequest(new GsonRequest(getRefreshUrl(), Feed.FeedRequestData.class, responseListener(), errorListener()));
+        executeRequest(new GsonRequest(getRefreshUrl(), Feed[].class, responseListener(), errorListener()));
     }
 
-    private Response.Listener<Feed.FeedRequestData> responseListener() {
-        return new Response.Listener<Feed.FeedRequestData>() {
+    private Response.Listener<Feed[]> responseListener() {
+        return new Response.Listener<Feed[]>() {
             @Override
-            public void onResponse(final Feed.FeedRequestData response) {
+            public void onResponse(final Feed[] response) {
                 TaskUtils.executeAsyncTask(new AsyncTask<Object, Object, Object>() {
                     @Override
                     protected Object doInBackground(Object... params) {
-                        ArrayList<Feed> feeds = response.data;
+                        List<Feed> feeds = Arrays.asList(response);
                         if(feeds != null && feeds.size()>0) {
                             mDataHelper.bulkInsert(feeds);
-                            int num1 = feeds.get(0).getId();
-                            int num2 = feeds.get(feeds.size()-1).getId();
-                            if(num1>mMaxId) {
-                                mMaxId = num1;
-                            }
-                            if(mSinceId == 0|| num1<mSinceId) {
-                                mSinceId = num1;
-                            }
-                            if(num2>mMaxId) {
-                                mMaxId = num2;
-                            }
-                            if(mSinceId == 0|| num2<mSinceId) {
-                                mSinceId = num2;
-                            }
+//                            int num1 = feeds.get(0).getId();
+//                            int num2 = feeds.get(feeds.size()-1).getId();
+//                            if(num1>mMaxId) {
+//                                mMaxId = num1;
+//                            }
+//                            if(mSinceId == 0|| num1<mSinceId) {
+//                                mSinceId = num1;
+//                            }
+//                            if(num2>mMaxId) {
+//                                mMaxId = num2;
+//                            }
+//                            if(mSinceId == 0|| num2<mSinceId) {
+//                                mSinceId = num2;
+//                            }
                         }
                         return null;
                     }
@@ -227,16 +229,16 @@ public class FeedsFragment extends BaseFragment implements  LoaderManager.Loader
         if (data != null && data.getCount() == 0) {
             refreshData();
         } else {
-            int num1 = mAdapter.getItem(mAdapter.getCount() -1 ).getId();
-            int num2 = mAdapter.getItem(0).getId();
-            if(num1 > num2) {
-                mMaxId = num1;
-                mSinceId = num2;
-            } else {
-                mMaxId = num2;
-                mSinceId = num1;
-            }
-            CLog.d(num1+""+num2);
+//            int num1 = mAdapter.getItem(mAdapter.getCount() -1 ).getId();
+//            int num2 = mAdapter.getItem(0).getId();
+//            if(num1 > num2) {
+//                mMaxId = num1;
+//                mSinceId = num2;
+//            } else {
+//                mMaxId = num2;
+//                mSinceId = num1;
+//            }
+//            CLog.d(num1+""+num2);
         }
     }
 

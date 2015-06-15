@@ -34,6 +34,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.UUID;
 
 
 /**
@@ -54,9 +55,9 @@ public class ImageViewActivity extends BaseActivity implements ViewPager.OnPageC
     private ArrayList<String> urls;
     private ArrayList<View> views;
     private ViewPager pager;
-    private String mName;
+    private String mTitle;
     private TextView tv;
-    private int mId;
+    private UUID mId;
     private boolean mIsFavd;
     private LikesDataHelper mLikeHelper;
 
@@ -70,16 +71,16 @@ public class ImageViewActivity extends BaseActivity implements ViewPager.OnPageC
         //String imageUrl = getIntent().getStringExtra(IMAGE_URL);
         //Type t = new TypeToken<String>(){}.getType();
         urls = getIntent().getStringArrayListExtra(IMAGE_URL);
-        mName = getIntent().getStringExtra(IMAGE_NAME);
-        mId = getIntent().getIntExtra(IMAGE_ID, -1);
-        if (mId <= 0) {
-            finish();
-            return;
-        }
+        mTitle = getIntent().getStringExtra(IMAGE_NAME);
+        mId = UUID.fromString(getIntent().getStringExtra(IMAGE_ID));
+//        if (mId <= 0) {
+//            finish();
+//            return;
+//        }
 
         mLikeHelper = new LikesDataHelper(this);
-        mIsFavd = mLikeHelper.query(mId) != null ;
-        setTitle(mName);
+        mIsFavd = mLikeHelper.query(mId.toString()) != null ;
+        setTitle(mTitle);
         views = new ArrayList<View>();
         tv = (TextView) findViewById(R.id.textView);
         tv.setText(1+"/"+urls.size());
@@ -217,24 +218,24 @@ public class ImageViewActivity extends BaseActivity implements ViewPager.OnPageC
     @Override
     protected void onResume() {
         super.onResume();
-        MobclickAgent.onPageStart("ImageViewAct"+mName); //统计页面
+        MobclickAgent.onPageStart("ImageViewAct"+mTitle); //统计页面
         MobclickAgent.onResume(this);          //统计时长
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        MobclickAgent.onPageEnd("ImageViewAct"+mName); // 保证 onPageEnd 在onPause 之前调用,因为 onPause 中会保存信息
+        MobclickAgent.onPageEnd("ImageViewAct"+mTitle); // 保证 onPageEnd 在onPause 之前调用,因为 onPause 中会保存信息
         MobclickAgent.onPause(this);
     }
 
     private void doFav() {
         if (mIsFavd) {
-            mLikeHelper.delete(mId);
+            mLikeHelper.delete(mId.toString());
         } else {
             Feed feed = new Feed();
             feed.setImgs(urls);
-            feed.setName(mName);
+            feed.setTitle(mTitle);
             feed.setId(mId);
 
             mLikeHelper.insert(feed);

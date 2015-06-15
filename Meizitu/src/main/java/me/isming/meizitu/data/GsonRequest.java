@@ -8,7 +8,12 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Map;
+
+//import me.isming.meizitu.model.Feed.Item;
+//import me.isming.meizitu.model.Feed.FeedRequestData;
+//import me.isming.meizitu.model.Feed;
 
 public class GsonRequest<T> extends Request<T> {
     private final Gson mGson = new Gson();
@@ -42,6 +47,20 @@ public class GsonRequest<T> extends Request<T> {
     protected Response<T> parseNetworkResponse(NetworkResponse response) {
         try {
             String json = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
+            json = "[" + json.trim().replaceAll("http.+\\t", "").replaceAll("\\n", ",") + "]";
+////            String []splitstring = json.trim().split("\n");
+//
+//            FeedRequestData feeddata = new FeedRequestData();
+//            feeddata.data = new ArrayList<Feed>();
+//            for(String topic: splitstring) {
+//                Feed item = mGson.fromJson(topic.substring(topic.indexOf("\t") + 1), Feed.class);
+//                Feed feed = new Feed();
+////                feed.setId(Integer.parseInt(item.date.replaceAll("\\W+", "").substring(4)));
+////                feed.setName(item.title);
+////                feed.setImgs(item.imgs);
+//                feeddata.data.add(feed);
+//            }
+
             return Response.success(mGson.fromJson(json, mClazz),
                     HttpHeaderParser.parseCacheHeaders(response));
         } catch (UnsupportedEncodingException e) {
